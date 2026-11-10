@@ -39,7 +39,9 @@ premium falls below **4.85%** or CPI inflation rises above **3.82%**.
 
 ## Run it
 
-Python 3.12. From this folder:
+Python 3.12. **On Windows, clone to a short folder path** (for example `C:\p2`) or enable long paths:
+in a cold run from a long path, pip silently skipped part of Streamlit and the app failed with
+`No module named 'streamlit.proto'`. The tests and `analysis.py` still ran. From this folder:
 
 ```
 python -m venv .venv
