@@ -1,0 +1,13 @@
+item,required,location_or_url,title,duration_or_as_of,timestamp_index,access_checked,frozen_or_commit_id,notes
+Research-Evolution,no,,,,,,,Not required for Project 2 (owner ruling 2026-10-14: no Edition A or B)
+Repository,yes,https://github.com/dscheid7717/project2-portfolio,Foundation Reserve Portfolio (Project 2),as of 2026-10-30,,TODO,TODO,
+Visible executed output,yes,https://github.com/dscheid7717/project2-portfolio/blob/main/output/report.txt; also output/visible_output.json,Frozen report and visible output,as of 2026-10-30,,TODO,TODO,Readable without running code
+Decision memo,yes,https://github.com/dscheid7717/project2-portfolio/blob/main/docs/decision-memo.md,Decision Memo: Foundation Reserve Portfolio,as of 2026-10-30,,TODO,TODO,
+Validation and AI use,yes,https://github.com/dscheid7717/project2-portfolio/blob/main/docs/validation-and-ai-use.md,Validation and AI Use: Project 2,as of 2026-10-30,,TODO,TODO,Includes the Locked Changed-Input Record
+Video 1,yes,TODO,TODO,TODO (3:00 max),TODO,TODO,TODO,How the system and my thinking changed; one AI output checked
+Transcript Video 1,yes,https://github.com/dscheid7717/project2-portfolio/blob/main/docs/transcript-video-1.txt,Corrected transcript: Video 1,TODO,,TODO,TODO,
+Video 2,yes,TODO,TODO,TODO (5:00 max),TODO,TODO,TODO,Code walkthrough
+Transcript Video 2,yes,https://github.com/dscheid7717/project2-portfolio/blob/main/docs/transcript-video-2.txt,Corrected transcript: Video 2,TODO,,TODO,TODO,
+Video 3,yes,TODO,TODO,TODO (5:00 max),TODO,TODO,TODO,Committee presentation; opens with the app running live
+Transcript Video 3,yes,https://github.com/dscheid7717/project2-portfolio/blob/main/docs/transcript-video-3.txt,Corrected transcript: Video 3,TODO,,TODO,TODO,
+Optional deployed output,no,,,,,,,Not deployed; runs locally with streamlit run app.py

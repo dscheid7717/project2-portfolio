@@ -1,0 +1,7 @@
+# Light theme in the app's tokens, so widgets stay readable on the warm paper background.
+[theme]
+base = "light"
+primaryColor = "#D9481C"
+backgroundColor = "#FAF8F4"
+secondaryBackgroundColor = "#F3F0EA"
+textColor = "#1B1A17"

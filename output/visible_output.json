@@ -1,0 +1,241 @@
+{
+  "statements": [
+    "AI use: built with Claude Code (Claude Opus 5.5); the analysis and the decision are Drew Scheiderer's.",
+    "Education, not investment advice."
+  ],
+  "decision_date": "2026-10-30",
+  "inputs": {
+    "decision_date": "2026-10-30",
+    "erp": 5.0,
+    "real_return_target": 4.0,
+    "vol_cap": 10.0,
+    "max_weight": 70.0,
+    "reserve_min": 3.0,
+    "window_months": null,
+    "extra_cost": 0.0,
+    "step": 5
+  },
+  "point_in_time_signal": {
+    "series": "CPIAUCSL",
+    "latest_month_known": "2026-09-01",
+    "inflation_pct": 3.7173
+  },
+  "objective_pct": 7.7173,
+  "expected_returns_pct": {
+    "BIL": 3.8648,
+    "IEF": 4.775,
+    "LQD": 5.65,
+    "VT": 9.92
+  },
+  "volatility_pct": {
+    "BIL": 0.4872,
+    "IEF": 7.7888,
+    "LQD": 9.8515,
+    "VT": 14.8398
+  },
+  "portfolios": {
+    "Equal weight": {
+      "weights_pct": {
+        "BIL": 25.0,
+        "IEF": 25.0,
+        "LQD": 25.0,
+        "VT": 25.0
+      },
+      "expected_return_pct": 6.0525,
+      "volatility_pct": 7.4933,
+      "mandate_verdict": "fail",
+      "failed_rules": [
+        "Expected return meets the objective"
+      ],
+      "history": {
+        "annual_return": 2.9424,
+        "volatility": 7.4933,
+        "max_drawdown": -15.778
+      }
+    },
+    "Benchmark 60/40 VT/LQD": {
+      "weights_pct": {
+        "BIL": 0.0,
+        "IEF": 0.0,
+        "LQD": 40.0,
+        "VT": 60.0
+      },
+      "expected_return_pct": 8.212,
+      "volatility_pct": 12.2305,
+      "mandate_verdict": "fail",
+      "failed_rules": [
+        "Volatility within the cap",
+        "Reserve in BIL"
+      ],
+      "history": {
+        "annual_return": 5.5626,
+        "volatility": 12.2305,
+        "max_drawdown": -23.7633
+      }
+    },
+    "Constrained portfolio": {
+      "weights_pct": {
+        "BIL": 35.0,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 65.0
+      },
+      "expected_return_pct": 7.8007,
+      "volatility_pct": 9.6903,
+      "mandate_verdict": "pass",
+      "failed_rules": [],
+      "history": {
+        "annual_return": 7.9538,
+        "volatility": 9.6903,
+        "max_drawdown": -16.9317
+      }
+    }
+  },
+  "stress": [
+    {
+      "group": "Estimates",
+      "label": "Equity risk premium 1 point lower",
+      "change": {
+        "erp": 4.0
+      },
+      "objective": 7.717250844268993,
+      "expected_return": null,
+      "volatility": null,
+      "largest_change": null,
+      "weights_pct": null
+    },
+    {
+      "group": "Estimates",
+      "label": "Equity risk premium 1 point higher",
+      "change": {
+        "erp": 6.0
+      },
+      "objective": 7.717250844268993,
+      "expected_return": 7.74516,
+      "volatility": 8.219895643939578,
+      "largest_change": 10.0,
+      "weights_pct": {
+        "BIL": 45.0,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 55.00000000000001
+      }
+    },
+    {
+      "group": "Estimates",
+      "label": "Inflation 1 point higher (objective +1)",
+      "change": {
+        "real_return_target": 5.0
+      },
+      "objective": 8.717250844268992,
+      "expected_return": null,
+      "volatility": null,
+      "largest_change": null,
+      "weights_pct": null
+    },
+    {
+      "group": "Window",
+      "label": "Risk from the last 36 months only",
+      "change": {
+        "window_months": 36
+      },
+      "objective": 7.717250844268993,
+      "expected_return": 7.80068,
+      "volatility": 7.5254885122833555,
+      "largest_change": 0.0,
+      "weights_pct": {
+        "BIL": 35.0,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 65.0
+      }
+    },
+    {
+      "group": "Costs",
+      "label": "Extra 0.25% a year trading and slippage",
+      "change": {
+        "extra_cost": 0.25
+      },
+      "objective": 7.717250844268993,
+      "expected_return": null,
+      "volatility": null,
+      "largest_change": null,
+      "weights_pct": null
+    },
+    {
+      "group": "Constraints",
+      "label": "Volatility cap 1 point tighter",
+      "change": {
+        "vol_cap": 9.0
+      },
+      "objective": 7.717250844268993,
+      "expected_return": null,
+      "volatility": null,
+      "largest_change": null,
+      "weights_pct": null
+    },
+    {
+      "group": "Constraints",
+      "label": "Largest fund at most 60%",
+      "change": {
+        "max_weight": 60
+      },
+      "objective": 7.717250844268993,
+      "expected_return": 7.72195,
+      "volatility": 9.984095924913243,
+      "largest_change": 10.0,
+      "weights_pct": {
+        "BIL": 25.0,
+        "IEF": 5.0,
+        "LQD": 10.0,
+        "VT": 60.0
+      }
+    },
+    {
+      "group": "Constraints",
+      "label": "BIL reserve at least 10%",
+      "change": {
+        "reserve_min": 10
+      },
+      "objective": 7.717250844268993,
+      "expected_return": 7.80068,
+      "volatility": 9.690261880437086,
+      "largest_change": 0.0,
+      "weights_pct": {
+        "BIL": 35.0,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 65.0
+      }
+    }
+  ],
+  "allocation_range_pct": {
+    "BIL": [
+      25.0,
+      45.0
+    ],
+    "IEF": [
+      0.0,
+      5.0
+    ],
+    "LQD": [
+      0.0,
+      10.0
+    ],
+    "VT": [
+      55.00000000000001,
+      65.0
+    ]
+  },
+  "stop_conditions": {
+    "erp_below_pct": 4.85,
+    "inflation_above_pct": 3.8173
+  },
+  "committee_action": "pending: written by Drew in docs/decision-memo.md",
+  "limitations": [
+    "Expected returns are yield-based estimates, not forecasts; the equity risk premium is a judgment.",
+    "Volatility and correlation are 60 months of history that include the 2022 rate shock.",
+    "LQD's yield is not reduced for expected credit losses.",
+    "Expense ratios were read on 2026-11-10, after the decision date; they rarely change."
+  ]
+}

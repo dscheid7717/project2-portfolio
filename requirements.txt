@@ -1,0 +1,6 @@
+# Engine, analysis and tests are standard library only; the app needs these.
+pandas>=2.2,<3
+altair>=5,<7
+streamlit>=1.40,<2
+# Only for refresh_data.py (re-downloading the inputs):
+yfinance>=0.2.54,<2

@@ -1,0 +1,5 @@
+series,description,observation_date,value_pct,alfred_vintage
+DTB3,"3-month Treasury bill, secondary market, discount basis",2026-10-29,4.00,2026-10-30
+DGS7,7-year Treasury constant maturity,2026-10-29,4.87,2026-10-30
+DGS10,10-year Treasury constant maturity,2026-10-29,4.98,2026-10-30
+BAMLC0A0CMEY,ICE BofA US Corporate Index effective yield,2026-10-30,5.79,2026-10-30

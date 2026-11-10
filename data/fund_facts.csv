@@ -1,0 +1,5 @@
+ticker,name,role,expense_ratio_pct,source,read_on
+BIL,State Street SPDR Bloomberg 1-3 Month T-Bill ETF,Cash and reserve,0.1352,Yahoo Finance via yfinance,2026-11-10
+IEF,iShares 7-10 Year Treasury Bond ETF,Government bonds,0.15,Yahoo Finance via yfinance,2026-11-10
+LQD,iShares iBoxx $ Investment Grade Corporate Bond ETF,Investment-grade credit,0.14,Yahoo Finance via yfinance,2026-11-10
+VT,Vanguard Total World Stock Index Fund ETF Shares,Global equity,0.06,Yahoo Finance via yfinance,2026-11-10
