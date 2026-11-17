@@ -27,8 +27,12 @@ and every number are unchanged, so my partner's cold run uses the same steps.
 
 ## I — the cold run, by my partner
 
-> **TODO (partner writes):** the command they ran, the first failure, the elapsed time, and where they
-> found the result.
+| Field | Partner's note |
+|---|---|
+| Command | **TODO (partner):** the commands they ran from the README |
+| First failure | none: clean run |
+| Elapsed time | **TODO (partner)** |
+| Where the result is | **TODO (partner)**: e.g. the app's status bar and Overview tab, or `output/report.txt` |
 
 ## V — one changed input, predicted first
 
@@ -66,8 +70,7 @@ would happen if they changed it. (In the app, the volatility cap slider reruns t
 
 ## E — fix one thing
 
-> **TODO (Drew):** the first failure your partner hit and the fix you pushed, or "Clean cold run; no fix
-> needed."
+Clean cold run; no fix needed.
 
 ## My decision line
 
