@@ -97,10 +97,10 @@ the changed input. Choose an input that is **not** already in the stress table a
 
 | Field | Value |
 |---|---|
-| Changed input, old → new value, units | **TODO (Drew)** |
-| My prediction (AI off): direction of the constrained mix, expected return and volatility, and why | **TODO (Drew)** |
-| Expected decision effect | **TODO (Drew)** |
-| Prediction timestamp and commit | **TODO (Drew)**: the commit that adds this prediction |
+| Changed input, old → new value, units | Volatility cap (mandate risk limit, annual volatility): **10.0% → 11.0%** |
+| My prediction (AI off): direction of the constrained mix, expected return and volatility, and why | I believe this will make the portfolio more heavily weighted toward VT, because we are OK with more volatility. Expected return will most likely increase, and so will volatility. More risk generally means more reward. |
+| Expected decision effect | My 20% pilot would not change, because I still want to test the mix in practice and review its results for the 12-month period. |
+| Prediction timestamp and commit | 2026-11-17; the commit titled "Locked prediction, AI off: vol cap 10 to 11", pushed before the run. My own words, typed to Claude Code, which recorded them unchanged except for spelling. |
 | Command run | **TODO (Drew)** |
 | Actual result | **TODO**: filled in after the run |
 | Actual decision effect | **TODO** |
