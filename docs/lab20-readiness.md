@@ -21,6 +21,10 @@ and does the decision survive one changed input?
 **Fix already pushed:** the README now says to clone to a short folder path on Windows (commit
 `bb7b92d`).
 
+**Changed since these runs:** the app was redesigned as a terminal-style interface on 2026-11-17
+(commit `5348ae0`): a status bar, five function tabs and a decision panel. The README, the commands
+and every number are unchanged, so my partner's cold run uses the same steps.
+
 ## I — the cold run, by my partner
 
 > **TODO (partner writes):** the command they ran, the first failure, the elapsed time, and where they
@@ -43,7 +47,7 @@ closed and committed **before** the run.
 ## Explain the code (no AI)
 
 The block that produces my decision number is `lowest_risk_mix` in [`engine.py`](../engine.py) (line
-174), which uses `mandate_check` (line 155). `run` (line 207) calls both for the three portfolios.
+185), which uses `mandate_check` (line 166). `run` (line 218) calls both for the three portfolios.
 
 > **TODO (Drew):** your partner's question and your answer from the code.
 

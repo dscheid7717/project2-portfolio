@@ -47,7 +47,7 @@ in a cold run from a long path, pip silently skipped part of Streamlit and the a
 python -m venv .venv
 .venv\Scripts\activate            (macOS/Linux: source .venv/bin/activate)
 pip install -r requirements.txt
-streamlit run app.py              the app: verdicts, stress run, what-if controls
+streamlit run app.py              the app: status bar, five tabs, what-if controls in the sidebar
 ```
 
 Other commands:
