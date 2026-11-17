@@ -101,10 +101,10 @@ the changed input. Choose an input that is **not** already in the stress table a
 | My prediction (AI off): direction of the constrained mix, expected return and volatility, and why | I believe this will make the portfolio more heavily weighted toward VT, because we are OK with more volatility. Expected return will most likely increase, and so will volatility. More risk generally means more reward. |
 | Expected decision effect | My 20% pilot would not change, because I still want to test the mix in practice and review its results for the 12-month period. |
 | Prediction timestamp and commit | 2026-11-17; the commit titled "Locked prediction, AI off: vol cap 10 to 11", pushed before the run. My own words, typed to Claude Code, which recorded them unchanged except for spelling. |
-| Command run | **TODO (Drew)** |
-| Actual result | **TODO**: filled in after the run |
-| Actual decision effect | **TODO** |
-| Reconciliation and failure diagnosis if they differ | **TODO** |
+| Command run | `python analysis.py --set vol_cap=11`, run after commit `b5ead91`; output saved to `output/changed-input-run.txt`, base case in `output/report.txt` |
+| Actual result | **The constrained mix did not change:** BIL 35 / IEF 0 / LQD 0 / VT 65, expected return 7.80%, volatility 9.69%, the same as the base. What changed is the margin of safety. Two stress cases that stopped the process now have a mix: extra 0.25% costs → BIL 30 / VT 70, and the 1-point-tighter cap (now 10%) → BIL 35 / VT 65. Stress stops fall from 4 of 8 to 2 of 8. The stop conditions loosen: equity risk premium below 4.35% (was 4.85%), CPI inflation above 4.17% (was 3.82%). The VT range widens to 55–70%. |
+| Actual decision effect | None: the 20% pilot stands, as predicted. The mandate keeps the 10% cap, so the stop triggers in my decision (3.82% CPI, 4.85% ERP) are unchanged. |
+| Reconciliation and failure diagnosis if they differ | **The decision matched; the portfolio prediction did not.** I expected more VT, higher return and higher volatility. Nothing moved, because the search does not chase return: it keeps the *lowest-volatility* mix that reaches the 7.72% objective. That mix already sat at 9.69%, under the old 10% cap, so the cap was not binding. The binding constraint is the return objective, and loosening a limit that isn't binding cannot change the answer. "More risk, more reward" describes the trade-off, but this optimizer takes only as much risk as the objective requires. The cap's real effect was on fragility: it widens the room before the process stops. *(Diagnosis drafted with Claude Code from the run; reviewed by me.)* |
 
 ## AI-use register
 
@@ -112,6 +112,7 @@ the changed input. Choose an input that is **not** already in the stress table a
 |---|---|---|---|
 | 2026-11-10 | Claude Code (Claude Opus 5.5) | built `engine.py`, `analysis.py`, `app.py`, `refresh_data.py` and the tests from my Labs 14–17 work; froze the data | accepted after the course known answers and 23 tests passed |
 | 2026-11-10 | Claude Code (Claude Opus 5.5) | proposed yield-based expected returns instead of the 60-month history means | accepted: the history means were negative for both bond funds because of the 2022 rate shock |
+| 2026-11-17 | Claude Code (Claude Opus 5.5) | recorded my dictated Locked Changed-Input prediction unchanged (commit `b5ead91`), ran the changed input after that commit, and drafted the result and diagnosis | accepted after checking the run output; the prediction is my own |
 | 2026-11-10 | Claude Code (Claude Opus 5.5) | drafted the README, this record and the memo's factual sections | accepted; the recommendation (pilot, 20% of the reserve, 12 months), the monitors and the Locked Changed-Input prediction are mine |
 
 *Any remaining errors are my own.*

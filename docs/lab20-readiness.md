@@ -38,11 +38,11 @@ closed and committed **before** the run.
 
 | Step | Record |
 |---|---|
-| Prediction commit | **TODO (Drew)**: the commit hash after you push the prediction |
-| Command run | **TODO (Drew)**, e.g. `python analysis.py --set vol_cap=11` |
+| Prediction commit | `b5ead91`, pushed 2026-11-17 before the run |
+| Command run | `python analysis.py --set vol_cap=11` (volatility cap 10.0% → 11.0%) |
 | Before output | `output/report.txt` (base case, frozen) |
-| After output | **TODO (Drew)**: paste the changed lines, or save as `output/changed-input-run.txt` |
-| What happened, whether the decision changes, and why | **TODO (Drew)** |
+| After output | [`output/changed-input-run.txt`](../output/changed-input-run.txt) |
+| What happened, whether the decision changes, and why | I predicted more VT, a higher return and higher volatility; **the mix did not change** (BIL 35 / VT 65, 7.80%, 9.69%). The cap was not binding: the search takes the lowest-risk mix that meets the 7.72% objective, and it already sat under 10%. The pilot decision did not change, as I predicted. The cap did widen the safety margin: stress stops fell from 4 of 8 to 2 of 8. |
 
 ## Explain the code (no AI)
 
