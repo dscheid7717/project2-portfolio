@@ -54,8 +54,16 @@ def build(inputs):
         else:
             break
     regime = engine.run({**inputs, "risk_regime": "2011-2021"}, data)
+    # The load-bearing judgment gets its own range: the constrained mix at each equity risk premium.
+    ladder = []
+    for erp in [round(4.0 + 0.25 * i, 2) for i in range(9)]:
+        case = engine.run({**inputs, "erp": erp}, data)
+        mix = case["portfolios"].get("Constrained portfolio")
+        ladder.append({"erp": erp, "weights": mix["weights"] if mix else None,
+                       "expected_return": mix["expected_return"] if mix else None,
+                       "volatility": mix["volatility"] if mix else None})
     return {"base": base, "stress": stress, "range": engine.allocation_range(base, stress),
-            "regime": regime, "regime_dates": data["prior_dates"],
+            "regime": regime, "regime_dates": data["prior_dates"], "erp_ladder": ladder,
             "erp_floor": erp_floor,
             "inflation_ceiling": (base["inflation"] + target_ceiling - inputs["real_return_target"])
             if target_ceiling is not None else None,
@@ -111,6 +119,11 @@ def report(inputs, built):
               "  " + (f"Constrained portfolio: {weights_text(reg_mix['weights'], t)}, expected "
                       f"{reg_mix['expected_return']:.2f}%, volatility {reg_mix['volatility']:.2f}%"
                       if reg_mix else "no mix meets the mandate")]
+    lines += ["", "Equity risk premium range (the load-bearing judgment; base 5.00%)"]
+    for row in built["erp_ladder"]:
+        mix = (f"{weights_text(row['weights'], tickers)}, expected {row['expected_return']:.2f}%, "
+               f"volatility {row['volatility']:.2f}%" if row["weights"] else "no mix meets the mandate")
+        lines.append(f"  ERP {row['erp']:.2f}%: {mix}")
     lines += ["", "Stop conditions (computed)",
               f"  Equity risk premium below {pct(built['erp_floor'])}: no mix meets the mandate",
               f"  CPI inflation above {pct(built['inflation_ceiling'])} (objective above "
@@ -143,6 +156,10 @@ def visible_output(inputs, built):
                     "weights_pct": dict(zip(base["tickers"], r["weights"])) if r["weights"] else None}
                    for r in built["stress"]],
         "allocation_range_pct": built["range"],
+        "erp_range": [{"erp_pct": r["erp"],
+                       "weights_pct": dict(zip(base["tickers"], r["weights"])) if r["weights"] else None,
+                       "volatility_pct": None if r["volatility"] is None else round(r["volatility"], 4)}
+                      for r in built["erp_ladder"]],
         "risk_regime_check": {
             "risk_from": list(built["regime_dates"]),
             "correlations": {f"{a}-{b}": round(built["regime"]["corr"][i][j], 4)

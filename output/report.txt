@@ -43,6 +43,17 @@ Risk regime check (not a stress case): volatility and correlation from 2011-09-0
   IEF-VT correlation -0.32 (base 0.61); LQD-VT 0.41 (base 0.78)
   Constrained portfolio: BIL 5 / IEF 35 / LQD 0 / VT 60, expected 7.82%, volatility 7.77%
 
+Equity risk premium range (the load-bearing judgment; base 5.00%)
+  ERP 4.00%: no mix meets the mandate
+  ERP 4.25%: no mix meets the mandate
+  ERP 4.50%: no mix meets the mandate
+  ERP 4.75%: no mix meets the mandate
+  ERP 5.00%: BIL 35 / IEF 0 / LQD 0 / VT 65, expected 7.80%, volatility 9.69%
+  ERP 5.25%: BIL 35 / IEF 0 / LQD 5 / VT 60, expected 7.74%, volatility 9.34%
+  ERP 5.50%: BIL 40 / IEF 0 / LQD 0 / VT 60, expected 7.80%, volatility 8.95%
+  ERP 5.75%: BIL 35 / IEF 5 / LQD 5 / VT 55, expected 7.74%, volatility 8.85%
+  ERP 6.00%: BIL 45 / IEF 0 / LQD 0 / VT 55, expected 7.75%, volatility 8.22%
+
 Stop conditions (computed)
   Equity risk premium below 4.85%: no mix meets the mandate
   CPI inflation above 3.82% (objective above 7.82%): no mix meets the mandate

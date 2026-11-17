@@ -193,6 +193,16 @@ class RiskRegime(unittest.TestCase):
         self.assertEqual(regime["portfolios"]["Constrained portfolio"]["failed"], [])
 
 
+class EquityPremiumRange(unittest.TestCase):
+    def test_range_brackets_the_breakeven(self):
+        built = analysis.build(analysis.BASE_INPUTS)
+        ladder = {r["erp"]: r for r in built["erp_ladder"]}
+        self.assertIsNone(ladder[4.75]["weights"])            # below the 4.85% break-even: no mix
+        self.assertIsNotNone(ladder[5.0]["weights"])          # the base case
+        vt = [r["weights"][3] for r in built["erp_ladder"] if r["weights"]]
+        self.assertEqual(vt, sorted(vt, reverse=True))        # a higher premium never needs more equity
+
+
 class Reproducible(unittest.TestCase):
     def test_same_inputs_same_answer(self):
         a = engine.run(analysis.BASE_INPUTS)

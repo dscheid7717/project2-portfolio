@@ -308,6 +308,19 @@ with tab3:
                 '<p class="muted" style="margin-top:10px">Move the sliders in the sidebar to test any other case; the '
                 'status bar updates with every change.</p>')
 
+    with st.container(key="pnl_erp"):
+        rows = []
+        for r in built["erp_ladder"]:
+            tag = ('<span class="tag ok">&#10003; MIX</span>' if r["weights"] else '<span class="tag no">&#10005; STOP</span>')
+            mix = " / ".join(f"{w:.0f}" for w in r["weights"]) if r["weights"] else "none"
+            vol = f'{r["volatility"]:.2f}' if r["volatility"] is not None else ""
+            base_row = ' class="hl"' if abs(r["erp"] - inputs["erp"]) < 1e-9 else ""
+            rows.append(f'<tr{base_row}><th scope="row">{r["erp"]:.2f}%</th><td>{tag}</td><td class="n">{mix}</td>'
+                        f'<td class="n">{vol}</td></tr>')
+        st.html(ph("Equity risk premium range", "the load-bearing judgment, its own range") +
+                '<div class="wrap"><table class="t"><thead><tr><th class="l">ERP</th><th>Result</th>'
+                f'<th>Mix BIL/IEF/LQD/VT</th><th>Vol %</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
+
     with st.container(key="pnl_regime"):
         reg = built["regime"]
         rmix = reg["portfolios"].get("Constrained portfolio")

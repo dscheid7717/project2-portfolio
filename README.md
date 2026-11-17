@@ -71,7 +71,7 @@ Other commands (on Windows, start each with `.venv\Scripts\python` instead of `p
 | Command | What it does |
 |---|---|
 | `python analysis.py` | prints the full result (about one second) |
-| `python -m unittest test_project -v` | 26 tests: course known answers, refusals, point-in-time, directions, risk regime |
+| `python -m unittest test_project -v` | 27 tests: course known answers, refusals, point-in-time, directions, risk regime, ERP range |
 | `python analysis.py --freeze` | runs the tests, then rewrites `output/` only if all pass |
 | `python analysis.py --set erp=4.0` | one changed input, printed but never frozen (for the Locked Changed-Input Record) |
 | `python refresh_data.py` | re-downloads the inputs; not needed, because the frozen data is committed |

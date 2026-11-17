@@ -34,6 +34,11 @@ corporate yield; VT = 10-year yield + equity risk premium; each net of its expen
 shock, so the history means are IEF (1.08%) and LQD (0.42%). An optimizer fed those would treat bonds as
 pure drag.
 
+**As-of check on adjusted prices:** prices were downloaded on 2026-11-10, after the decision date. Any
+fund distribution with an ex-date between 2026-10-30 and 2026-11-10 rescales every earlier adjusted price
+by the same factor, so every monthly return through October, and therefore every volatility and
+correlation used here, is unchanged. Expected returns come from yields, not prices.
+
 ## Point-in-time signal: data card (CPIAUCSL)
 
 | Field | Value |
@@ -49,7 +54,7 @@ pure drag.
 
 ## Validation register
 
-`python -m unittest test_project -v`: **26 tests, all passing.**
+`python -m unittest test_project -v`: **27 tests, all passing.**
 
 | Group | What it proves |
 |---|---|
@@ -60,6 +65,7 @@ pure drag.
 | Mandate (4) | the constrained portfolio passes every rule; each baseline fails exactly the rules shown; weights sum to 100 on the 5-point grid; no passing mix has lower volatility |
 | Directions (4) | a higher objective never lowers the required risk; a higher equity premium needs no more equity; costs lower every return by exactly the cost; a tighter constraint never lowers volatility |
 | Risk regime (3) | the base mix is unchanged; the 2011–2021 IEF–VT correlation is negative; that regime brings Treasuries into a passing mix |
+| Equity premium range (1) | below the break-even no mix passes; a higher premium never needs more VT |
 | Reproducibility (1) | the same inputs give the same answer |
 
 **Outcome analysis (history, not forecast):** over 60 months, monthly rebalanced:
@@ -90,6 +96,13 @@ pure drag.
 | Constraints | volatility cap −1 point | no mix meets the mandate |
 | Constraints | largest fund at most 60% | 25 / 5 / 10 / 60 |
 | Constraints | BIL at least 10% | 35 / 0 / 0 / 65 |
+
+## Equity risk premium range (the load-bearing judgment)
+
+The equity risk premium carries the result, so it gets its own range in `output/report.txt` and the
+app's Stress tab: the constrained mix at every premium from 4.00% to 6.00% in 0.25-point steps. Below
+the 4.85% break-even no mix passes; above it, a higher premium needs less VT. Tested in
+`EquityPremiumRange`.
 
 ## Risk regime check (why two funds)
 

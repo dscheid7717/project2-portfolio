@@ -228,6 +228,78 @@
       65.0
     ]
   },
+  "erp_range": [
+    {
+      "erp_pct": 4.0,
+      "weights_pct": null,
+      "volatility_pct": null
+    },
+    {
+      "erp_pct": 4.25,
+      "weights_pct": null,
+      "volatility_pct": null
+    },
+    {
+      "erp_pct": 4.5,
+      "weights_pct": null,
+      "volatility_pct": null
+    },
+    {
+      "erp_pct": 4.75,
+      "weights_pct": null,
+      "volatility_pct": null
+    },
+    {
+      "erp_pct": 5.0,
+      "weights_pct": {
+        "BIL": 35.0,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 65.0
+      },
+      "volatility_pct": 9.6903
+    },
+    {
+      "erp_pct": 5.25,
+      "weights_pct": {
+        "BIL": 35.0,
+        "IEF": 0.0,
+        "LQD": 5.0,
+        "VT": 60.0
+      },
+      "volatility_pct": 9.3387
+    },
+    {
+      "erp_pct": 5.5,
+      "weights_pct": {
+        "BIL": 40.0,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 60.0
+      },
+      "volatility_pct": 8.955
+    },
+    {
+      "erp_pct": 5.75,
+      "weights_pct": {
+        "BIL": 35.0,
+        "IEF": 5.0,
+        "LQD": 5.0,
+        "VT": 55.00000000000001
+      },
+      "volatility_pct": 8.8499
+    },
+    {
+      "erp_pct": 6.0,
+      "weights_pct": {
+        "BIL": 45.0,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 55.00000000000001
+      },
+      "volatility_pct": 8.2199
+    }
+  ],
   "risk_regime_check": {
     "risk_from": [
       "2011-09-01",
