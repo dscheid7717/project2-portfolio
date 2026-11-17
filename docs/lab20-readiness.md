@@ -49,7 +49,20 @@ closed and committed **before** the run.
 The block that produces my decision number is `lowest_risk_mix` in [`engine.py`](../engine.py) (line
 185), which uses `mandate_check` (line 166). `run` (line 218) calls both for the three portfolios.
 
-> **TODO (Drew):** your partner's question and your answer from the code.
+**Partner's question 1:** Why did you choose 10%?
+
+**My answer:** That was part of the lab that was given.
+
+*Correction afterward:* the 10% volatility cap was my own mandate choice for the foundation reserve on
+2026-11-10, not a course-given value. The course's Meridian case had no volatility cap. In the code it
+is `vol_cap` in `BASE_INPUTS` in `analysis.py`, and `mandate_check` in `engine.py` tests every mix
+against it.
+
+**Partner's question 2:** Why do you have an option to raise or lower it?
+
+**My answer:** The cap can be changed by committee decision, so the committee should be able to see what
+would happen if they changed it. (In the app, the volatility cap slider reruns the engine with the new
+`vol_cap`; my Locked Changed-Input Record ran the same change from 10% to 11%.)
 
 ## E — fix one thing
 
