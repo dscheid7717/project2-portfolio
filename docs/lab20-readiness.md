@@ -78,8 +78,8 @@ Clean cold run; no fix needed.
 
 ## Reflect
 
-> **TODO (Drew):** 1. What did the cold run find that you could not see? 2. What will you not touch
-> before the deadline?
+I'd like to add some kind of AI assistant in the app that can be chatted with. Otherwise, the project
+looks good, and the professor confirmed that in class.
 
 ---
 
