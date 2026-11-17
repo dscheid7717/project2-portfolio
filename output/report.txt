@@ -39,6 +39,10 @@ Allocation range across the base and the stress runs that still have a mix
   LQD: 0% to 10%
   VT: 55% to 65%
 
+Risk regime check (not a stress case): volatility and correlation from 2011-09-01 to 2021-09-01, the decade before the rate shock
+  IEF-VT correlation -0.32 (base 0.61); LQD-VT 0.41 (base 0.78)
+  Constrained portfolio: BIL 5 / IEF 35 / LQD 0 / VT 60, expected 7.82%, volatility 7.77%
+
 Stop conditions (computed)
   Equity risk premium below 4.85%: no mix meets the mandate
   CPI inflation above 3.82% (objective above 7.82%): no mix meets the mandate

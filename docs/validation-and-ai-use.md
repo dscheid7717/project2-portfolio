@@ -25,6 +25,7 @@
 | IG corporate yield 5.79% | FRED BAMLC0A0CMEY, ALFRED vintage 2026-10-30 | observed 2026-10-30 | percent, effective yield | LQD expected return | fact |
 | CPI, September 2026 336.298; September 2025 324.245 | FRED CPIAUCSL, ALFRED vintage 2026-10-30 | September published 2026-10-14 | index, 1982–84 = 100 | objective | fact |
 | Expense ratios BIL 0.1352%, IEF 0.15%, LQD 0.14%, VT 0.06% | Yahoo Finance via `yfinance` | read 2026-11-10 (after the decision date) | percent a year | net returns | fact, read late |
+| Prior-decade prices BIL, IEF, LQD, VT | Yahoo Finance via `yfinance`, Adj Close | 2011-09 to 2021-09 (120 monthly returns), downloaded 2026-11-17 | USD | risk regime check only, not the base | history |
 | Equity risk premium 5.0% | course convention, as in my Project 1 | — | percent | VT expected return | judgment, stress-tested |
 
 **Expected returns (estimates):** BIL = bill yield; IEF = average of the 7- and 10-year yields; LQD = IG
@@ -48,7 +49,7 @@ pure drag.
 
 ## Validation register
 
-`python -m unittest test_project -v`: **23 tests, all passing.**
+`python -m unittest test_project -v`: **26 tests, all passing.**
 
 | Group | What it proves |
 |---|---|
@@ -58,6 +59,7 @@ pure drag.
 | Estimates (2) | expected returns match the building blocks by hand; volatility matches a hand calculation |
 | Mandate (4) | the constrained portfolio passes every rule; each baseline fails exactly the rules shown; weights sum to 100 on the 5-point grid; no passing mix has lower volatility |
 | Directions (4) | a higher objective never lowers the required risk; a higher equity premium needs no more equity; costs lower every return by exactly the cost; a tighter constraint never lowers volatility |
+| Risk regime (3) | the base mix is unchanged; the 2011–2021 IEF–VT correlation is negative; that regime brings Treasuries into a passing mix |
 | Reproducibility (1) | the same inputs give the same answer |
 
 **Outcome analysis (history, not forecast):** over 60 months, monthly rebalanced:
@@ -88,6 +90,23 @@ pure drag.
 | Constraints | volatility cap −1 point | no mix meets the mandate |
 | Constraints | largest fund at most 60% | 25 / 5 / 10 / 60 |
 | Constraints | BIL at least 10% | 35 / 0 / 0 / 65 |
+
+## Risk regime check (why two funds)
+
+The base mix holds only BIL and VT. To test whether that is a model artifact or a result, the same
+search was rerun with volatility and correlation from 2011–2021 instead of 2021–2026; expected returns
+and the mandate were unchanged. It is reported separately, not as a ninth stress case.
+
+| Correlation | 2021–2026 (base) | 2011–2021 |
+|---|---:|---:|
+| IEF–VT | 0.61 | (0.32) |
+| LQD–VT | 0.78 | 0.41 |
+| IEF–LQD | 0.93 | 0.53 |
+| **Constrained mix BIL / IEF / LQD / VT** | **35 / 0 / 0 / 65**, volatility 9.69% | **5 / 35 / 0 / 60**, volatility 7.77% |
+
+**Reading:** the two-fund mix is the honest answer under the recent correlation regime, not a
+simplification. In a regime where Treasuries hedge stocks, the same process diversifies. Tested in
+`RiskRegime` (3 tests).
 
 ## Locked Changed-Input Record
 

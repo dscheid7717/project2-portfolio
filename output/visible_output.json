@@ -12,6 +12,7 @@
     "max_weight": 70.0,
     "reserve_min": 3.0,
     "window_months": null,
+    "risk_regime": "2021-2026",
     "extra_cost": 0.0,
     "step": 5
   },
@@ -226,6 +227,27 @@
       55.00000000000001,
       65.0
     ]
+  },
+  "risk_regime_check": {
+    "risk_from": [
+      "2011-09-01",
+      "2021-09-01"
+    ],
+    "correlations": {
+      "BIL-IEF": 0.2072,
+      "BIL-LQD": -0.0136,
+      "BIL-VT": -0.2055,
+      "IEF-LQD": 0.5283,
+      "IEF-VT": -0.322,
+      "LQD-VT": 0.4074
+    },
+    "constrained_weights_pct": {
+      "BIL": 5.0,
+      "IEF": 35.0,
+      "LQD": 0.0,
+      "VT": 60.0
+    },
+    "volatility_pct": 7.771
   },
   "stop_conditions": {
     "erp_below_pct": 4.85,

@@ -71,7 +71,7 @@ Other commands (on Windows, start each with `.venv\Scripts\python` instead of `p
 | Command | What it does |
 |---|---|
 | `python analysis.py` | prints the full result (about one second) |
-| `python -m unittest test_project -v` | 23 tests: course known answers, refusals, point-in-time, directions |
+| `python -m unittest test_project -v` | 26 tests: course known answers, refusals, point-in-time, directions, risk regime |
 | `python analysis.py --freeze` | runs the tests, then rewrites `output/` only if all pass |
 | `python analysis.py --set erp=4.0` | one changed input, printed but never frozen (for the Locked Changed-Input Record) |
 | `python refresh_data.py` | re-downloads the inputs; not needed, because the frozen data is committed |
@@ -86,7 +86,7 @@ No API key, account or `.env` is needed: every input is frozen in `data/`.
 | `analysis.py` | the inputs with labels, the report, the frozen output |
 | `app.py` | the Streamlit app; renders the engine's results and reruns it from the what-if controls |
 | `test_project.py` | validation suite |
-| `data/` | frozen inputs: prices, ALFRED rates and CPI vintage of 2026-10-30, fund facts |
+| `data/` | frozen inputs: prices (2021–2026, plus 2011–2021 for the risk regime check), ALFRED rates and CPI vintage of 2026-10-30, fund facts |
 | `refresh_data.py` | how `data/` was built |
 | `docs/` | memo, validation and AI use, video transcripts |
 | `project-submission-manifest.csv` | the submission manifest |
@@ -108,6 +108,9 @@ Nothing published after **2026-10-30** is used for the decision.
   course convention as my Project 1. The result depends on it: below 4.85% no mix passes.
 - Volatility and correlation are 60 months of history that include the 2022 rate shock; history means
   are shown in the app only to explain why they are not used as expected returns.
+- **Why only BIL and VT:** since 2021 bonds have moved with stocks, so the search drops them. With
+  2011–2021 risk estimates (the risk regime check), Treasuries hedge stocks and the mix becomes
+  BIL 5 / IEF 35 / LQD 0 / VT 60.
 - LQD's yield is not reduced for expected credit losses.
 - The search uses a 5-point grid, so a finer mix could pass in cases where this one reports none.
 

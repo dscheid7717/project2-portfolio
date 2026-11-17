@@ -42,6 +42,15 @@ def main():
         for stamp, row in prices.iterrows():
             writer.writerow([stamp.strftime("%Y-%m-%d")] + [f"{v:.4f}" for v in row])
 
+    # Risk regime check: the same funds over the decade before the 2022 rate shock.
+    prior = yf.download(TICKERS, start="2011-09-01", end="2021-10-01", interval="1mo",
+                        auto_adjust=True, progress=False)["Close"][TICKERS]
+    with open(DATA / "prices_2011-09_2021-09.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["Date"] + TICKERS)
+        for stamp, row in prior.iterrows():
+            writer.writerow([stamp.strftime("%Y-%m-%d")] + [f"{v:.4f}" for v in row])
+
     with open(DATA / f"rates_{DECISION_DATE}.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["series", "description", "observation_date", "value_pct", "alfred_vintage"])

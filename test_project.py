@@ -171,6 +171,28 @@ class Directions(unittest.TestCase):
                                     self.base["portfolios"]["Constrained portfolio"]["volatility"] - 1e-9)
 
 
+class RiskRegime(unittest.TestCase):
+    """The two-fund base result depends on the 2021-2026 correlations; the prior decade is checked separately."""
+
+    def setUp(self):
+        self.data = engine.load_data(analysis.BASE_INPUTS)
+
+    def test_base_is_unchanged_by_the_regime_check(self):
+        base = engine.run(analysis.BASE_INPUTS, self.data)
+        self.assertEqual(base["portfolios"]["Constrained portfolio"]["weights"], [35.0, 0.0, 0.0, 65.0])
+
+    def test_prior_decade_has_negative_treasury_equity_correlation(self):
+        regime = engine.run({**analysis.BASE_INPUTS, "risk_regime": "2011-2021"}, self.data)
+        t = regime["tickers"]
+        self.assertLess(regime["corr"][t.index("IEF")][t.index("VT")], 0)
+
+    def test_prior_decade_brings_treasuries_in(self):
+        regime = engine.run({**analysis.BASE_INPUTS, "risk_regime": "2011-2021"}, self.data)
+        weights = regime["portfolios"]["Constrained portfolio"]["weights"]
+        self.assertGreater(weights[regime["tickers"].index("IEF")], 0)
+        self.assertEqual(regime["portfolios"]["Constrained portfolio"]["failed"], [])
+
+
 class Reproducible(unittest.TestCase):
     def test_same_inputs_same_answer(self):
         a = engine.run(analysis.BASE_INPUTS)

@@ -35,6 +35,19 @@ It clears the objective by 0.08 points and the volatility cap by 0.31 points. Ov
 held with monthly rebalancing, it returned 7.95% a year with a maximum drawdown of 16.93%. That is history,
 not a forecast.
 
+## Why the portfolio holds only two funds
+
+The search tries every mix of all four funds; BIL + VT is its answer, not a simplification. Over
+2021–2026, bonds moved with stocks (IEF–VT correlation 0.61, LQD–VT 0.78), so IEF and LQD added risk
+without enough return, and a barbell of T-bills and global equity reached the objective with the least
+volatility. VT itself holds about 10,000 stocks worldwide, so the equity side is broadly diversified.
+
+**Risk regime check:** with volatility and correlation from the decade before the rate shock
+(2011–2021), Treasuries hedge stocks (IEF–VT (0.32)) and the search builds **BIL 5 / IEF 35 / LQD 0 /
+VT 60** at 7.77% volatility. If stock–bond correlation turns negative again during the pilot, the
+process should move toward Treasuries. That is a reason to rerun it each quarter, not to hard-code
+the two-fund mix.
+
 ## How fragile it is
 
 | Stress (one change) | Result |

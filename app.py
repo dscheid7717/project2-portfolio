@@ -308,6 +308,29 @@ with tab3:
                 '<p class="muted" style="margin-top:10px">Move the sliders in the sidebar to test any other case; the '
                 'status bar updates with every change.</p>')
 
+    with st.container(key="pnl_regime"):
+        reg = built["regime"]
+        rmix = reg["portfolios"].get("Constrained portfolio")
+        pairs = [("IEF", "VT"), ("LQD", "VT"), ("IEF", "LQD")]
+        rows = "".join(f'<tr><th scope="row">{a}-{b}</th>'
+                       f'<td class="n">{result["corr"][tickers.index(a)][tickers.index(b)]:.2f}</td>'
+                       f'<td class="n">{reg["corr"][tickers.index(a)][tickers.index(b)]:.2f}</td></tr>' for a, b in pairs)
+        base_mix = " / ".join(f"{w:.0f}" for w in best["weights"]) if best else "none"
+        base_vol = f"{best['volatility']:.2f}%" if best else "n/a"
+        reg_text = " / ".join(f"{w:.0f}" for w in rmix["weights"]) if rmix else "none"
+        reg_vol = f"{rmix['volatility']:.2f}%" if rmix else "n/a"
+        st.html(ph("Risk regime check", "why the base mix holds two funds · not a stress case") +
+                '<div class="wrap"><table class="t"><thead><tr><th class="l">Correlation</th>'
+                f'<th>{result["price_dates"][0][:4]}-{result["price_dates"][1][:4]} (base)</th>'
+                f'<th>{built["regime_dates"][0][:4]}-{built["regime_dates"][1][:4]}</th></tr></thead><tbody>{rows}'
+                f'<tr class="hl"><th scope="row">Mix BIL/IEF/LQD/VT</th><td class="n">{base_mix}</td>'
+                f'<td class="n">{reg_text}</td></tr>'
+                f'<tr><th scope="row">Volatility</th><td class="n">{base_vol}</td><td class="n">{reg_vol}</td></tr>'
+                '</tbody></table></div>'
+                '<p class="muted" style="margin-top:8px">Since 2021 bonds have moved with stocks, so they add risk '
+                'without enough return and the search drops them. With the decade before the rate shock, '
+                'Treasuries hedge stocks and enter the mix. Same funds, same expected returns, same mandate.</p>')
+
 # ---------------------------------------------------------------- 4 signal
 with tab4:
     data = engine.load_data(inputs)

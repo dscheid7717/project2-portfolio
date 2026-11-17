@@ -220,7 +220,9 @@ def run(inputs, data=None):
     data = data or load_data(inputs)
     tickers, prices = data["tickers"], data["prices"]
     returns = monthly_returns(prices)
-    vols, corr = risk_estimates(returns, inputs.get("window_months"))
+    # Risk regime check: volatility and correlation from the decade before the rate shock instead.
+    risk_returns = monthly_returns(data["prior_prices"]) if inputs.get("risk_regime") == "2011-2021" else returns
+    vols, corr = risk_estimates(risk_returns, inputs.get("window_months"))
     validate_correlation(corr)
     cov = covariance_matrix([v / 100 for v in vols], corr)
     exp = expected_returns(data["rates"], inputs["erp"], data["expense"], inputs.get("extra_cost", 0.0))
@@ -254,8 +256,12 @@ def run(inputs, data=None):
 
 def load_data(inputs):
     dates, tickers, prices = read_prices()
+    prior_dates, prior_tickers, prior_prices = read_prices(DATA / "prices_2011-09_2021-09.csv")
+    if prior_tickers != tickers:
+        raise ValueError("The prior-decade price file must have the same funds in the same order.")
     cpi_rows, vintage = read_cpi_vintage(DATA / f"CPIAUCSL_vintage_{inputs['decision_date']}.csv")
-    return {"dates": dates, "tickers": tickers, "prices": prices,
+    return {"dates": dates, "tickers": tickers, "prices": prices, "prior_prices": prior_prices,
+            "prior_dates": (prior_dates[0], prior_dates[-1]),
             "rates": read_rates(DATA / f"rates_{inputs['decision_date']}.csv"),
             "expense": read_expense_ratios(), "cpi_rows": cpi_rows, "cpi_vintage": vintage}
 

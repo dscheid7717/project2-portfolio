@@ -24,6 +24,7 @@ BASE_INPUTS = {
     "max_weight": 70.0,              # mandate: no fund above 70%
     "reserve_min": 3.0,              # mandate: at least 3% in BIL for twelve months of payouts
     "window_months": None,           # judgment: risk from all 60 monthly returns
+    "risk_regime": "2021-2026",      # judgment: risk from the recent 60 months; "2011-2021" is the regime check
     "extra_cost": 0.0,               # judgment: costs beyond expense ratios, percent a year
     "step": 5,                       # search grid, percentage points
 }
@@ -52,7 +53,9 @@ def build(inputs):
             target_ceiling = target
         else:
             break
+    regime = engine.run({**inputs, "risk_regime": "2011-2021"}, data)
     return {"base": base, "stress": stress, "range": engine.allocation_range(base, stress),
+            "regime": regime, "regime_dates": data["prior_dates"],
             "erp_floor": erp_floor,
             "inflation_ceiling": (base["inflation"] + target_ceiling - inputs["real_return_target"])
             if target_ceiling is not None else None,
@@ -96,6 +99,18 @@ def report(inputs, built):
         lines += [f"  {t}: {lo:.0f}% to {hi:.0f}%" for t, (lo, hi) in built["range"].items()]
     else:
         lines.append("  none: no mix in any case")
+    reg = built["regime"]
+    reg_mix = reg["portfolios"].get("Constrained portfolio")
+    t = reg["tickers"]
+    lines += ["", f"Risk regime check (not a stress case): volatility and correlation from "
+                  f"{built['regime_dates'][0]} to {built['regime_dates'][1]}, the decade before the rate shock",
+              f"  IEF-VT correlation {reg['corr'][t.index('IEF')][t.index('VT')]:.2f} "
+              f"(base {base['corr'][t.index('IEF')][t.index('VT')]:.2f}); "
+              f"LQD-VT {reg['corr'][t.index('LQD')][t.index('VT')]:.2f} "
+              f"(base {base['corr'][t.index('LQD')][t.index('VT')]:.2f})",
+              "  " + (f"Constrained portfolio: {weights_text(reg_mix['weights'], t)}, expected "
+                      f"{reg_mix['expected_return']:.2f}%, volatility {reg_mix['volatility']:.2f}%"
+                      if reg_mix else "no mix meets the mandate")]
     lines += ["", "Stop conditions (computed)",
               f"  Equity risk premium below {pct(built['erp_floor'])}: no mix meets the mandate",
               f"  CPI inflation above {pct(built['inflation_ceiling'])} (objective above "
@@ -128,6 +143,14 @@ def visible_output(inputs, built):
                     "weights_pct": dict(zip(base["tickers"], r["weights"])) if r["weights"] else None}
                    for r in built["stress"]],
         "allocation_range_pct": built["range"],
+        "risk_regime_check": {
+            "risk_from": list(built["regime_dates"]),
+            "correlations": {f"{a}-{b}": round(built["regime"]["corr"][i][j], 4)
+                             for i, a in enumerate(base["tickers"]) for j, b in enumerate(base["tickers"]) if i < j},
+            "constrained_weights_pct": (dict(zip(base["tickers"], built["regime"]["portfolios"]["Constrained portfolio"]["weights"]))
+                                        if built["regime"]["feasible"] else None),
+            "volatility_pct": (round(built["regime"]["portfolios"]["Constrained portfolio"]["volatility"], 4)
+                               if built["regime"]["feasible"] else None)},
         "stop_conditions": {"erp_below_pct": built["erp_floor"], "inflation_above_pct":
                             None if built["inflation_ceiling"] is None else round(built["inflation_ceiling"], 4)},
         "committee_action": COMMITTEE_ACTION,
