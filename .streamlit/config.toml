@@ -1,7 +1,7 @@
-# Light theme in the app's tokens, so widgets stay readable on the warm paper background.
+# Dark terminal theme matching app.py's tokens.
 [theme]
-base = "light"
-primaryColor = "#D9481C"
-backgroundColor = "#FAF8F4"
-secondaryBackgroundColor = "#F3F0EA"
-textColor = "#1B1A17"
+base = "dark"
+primaryColor = "#F5A524"
+backgroundColor = "#0B0D10"
+secondaryBackgroundColor = "#12161B"
+textColor = "#E8E3D8"

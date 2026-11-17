@@ -102,6 +102,17 @@ def cpi_inflation_as_known(cpi_rows, vintage, decision_date):
     return latest, (by_month[latest] / by_month[year_earlier] - 1) * 100
 
 
+def cpi_inflation_series(cpi_rows):
+    """[(month, year-over-year inflation percent)] for every month in the vintage with a year-earlier value."""
+    by_month = dict(cpi_rows)
+    series = []
+    for month, value in sorted(by_month.items()):
+        year_earlier = f"{int(month[:4]) - 1}{month[4:]}"
+        if year_earlier in by_month:
+            series.append((month, (value / by_month[year_earlier] - 1) * 100))
+    return series
+
+
 # ---------------------------------------------------------------- portfolio math (Lab 14)
 
 def validate_correlation(corr):
