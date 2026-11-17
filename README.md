@@ -37,6 +37,8 @@ constrained portfolio process for its reserve. The mandate:
 Four of eight stress runs leave **no mix that meets the mandate**. The process stops if the equity risk
 premium falls below **4.85%** or CPI inflation rises above **3.82%**.
 
+**Committee decision:** Pilot the constrained portfolio with 20% of the reserve for 12 months, reviewed quarterly. Stop the pilot and return the sleeve to the current policy if CPI inflation exceeds 3.82% or my equity risk premium falls below 4.85%, since either leaves no mix that can satisfy the mandate. Reconsider adopting if it holds through 4 quarterly reviews with realized volatility under 10%.
+
 ## Run it
 
 Python 3.12. **On Windows, clone to a short folder path** (for example `C:\p2`) or enable long paths:

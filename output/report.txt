@@ -43,4 +43,4 @@ Stop conditions (computed)
   Equity risk premium below 4.85%: no mix meets the mandate
   CPI inflation above 3.82% (objective above 7.82%): no mix meets the mandate
 
-Committee action: pending: written by Drew in docs/decision-memo.md
+Committee action: Pilot the constrained portfolio with 20% of the reserve for 12 months, reviewed quarterly. Stop the pilot and return the sleeve to the current policy if CPI inflation exceeds 3.82% or my equity risk premium falls below 4.85%, since either leaves no mix that can satisfy the mandate. Reconsider adopting if it holds through 4 quarterly reviews with realized volatility under 10%.

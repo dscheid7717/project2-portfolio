@@ -8,8 +8,13 @@
 
 ## Recommendation
 
-> **TODO (Drew):** your action (adopt, allocate to, rebalance, pilot, or reject), the allocation range,
-> the condition, and the committee ask. Use the numbers below; keep them the same as `output/report.txt`.
+**Pilot the constrained portfolio with 20% of the reserve for 12 months, reviewed quarterly. Stop the pilot and return the sleeve to the current policy if CPI inflation exceeds 3.82% or my equity risk premium falls below 4.85%, since either leaves no mix that can satisfy the mandate. Reconsider adopting if it holds through 4 quarterly reviews with realized volatility under 10%.**
+
+The pilot sleeve holds the constrained portfolio, **BIL 35 / IEF 0 / LQD 0 / VT 65**, within the
+allocation range BIL 25–45%, IEF 0–5%, LQD 0–10%, VT 55–65%. The other 80% of the reserve stays under
+the current policy.
+
+**Committee ask:** approve a 12-month pilot on 20% of the reserve, with the stop conditions above.
 
 ## The mandate
 
@@ -50,9 +55,10 @@ inflation is above **3.82%**. Inflation is 3.72% today.
 
 ## Monitor and reversal triggers
 
-> **TODO (Drew):** confirm or edit. Suggested: each monthly CPI release (inflation above 3.82% stops the
-> process); the 10-year Treasury yield and your equity risk premium view; realized 12-month volatility
-> above 10%; BIL below 3% after any rebalance.
+- **Each monthly CPI release:** inflation above 3.82% stops the pilot.
+- **My equity risk premium estimate**, reviewed quarterly: below 4.85% stops the pilot.
+- **Realized volatility at each quarterly review:** it must stay under 10% for four reviews before I would
+  reconsider adopting.
 
 ## Limits of this analysis
 

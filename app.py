@@ -159,7 +159,7 @@ stopped = sum(1 for r in built["stress"] if not r["weights"])
 status = ("PASS", "good") if best else ("NO MIX", "bad")
 cells = [("As of", BASE["decision_date"], ""), ("CPI y/y (Sep)", f"{result['inflation']:.2f}%", ""),
          ("Objective", f"{m['objective']:.2f}%", ""), ("Vol cap", f"{m['vol_cap']:.1f}%", ""),
-         ("Status", status[0], status[1]),
+         ("Status", status[0], status[1]), ("Action", analysis.COMMITTEE_ACTION_SHORT, ""),
          ("Mix BIL/IEF/LQD/VT", " / ".join(f"{w:.0f}" for w in best["weights"]) if best else "none", ""),
          ("Stress stops", f"{stopped}/{len(built['stress'])}", "bad" if stopped else "good"),
          ("Stop if", f"ERP<{analysis.pct(built['erp_floor'], 2)} CPI>{analysis.pct(built['inflation_ceiling'])}", "")]
@@ -168,7 +168,7 @@ st.html('<div class="bar"><div class="brand">RESERVE&nbsp;&lt;GO&gt;</div>'
                   for k, v, c in cells) + "</div>"
         '<div class="disclaimer">Foundation reserve portfolio · BIL / IEF / LQD / VT · Built with Claude Code '
         '(Claude Opus 5.5); the analysis and the decision are Drew Scheiderer\'s. Education, not investment advice. '
-        f'Committee action: {esc(analysis.PENDING)}.</div>')
+        f'Committee action: {esc(analysis.COMMITTEE_ACTION)}</div>')
 if inputs != BASE:
     changed = ", ".join(f"{k} {BASE[k]} → {v}" for k, v in inputs.items() if BASE[k] != v)
     st.html(f'<div class="modified">WHAT-IF ACTIVE · {esc(changed)} · not the frozen result</div>')
@@ -246,7 +246,7 @@ with tab1:
         span = ("".join(f"<dt>{t}</dt><dd>{lo:.0f}% – {hi:.0f}%</dd>" for t, (lo, hi) in rng.items())
                 if rng else "<dt>Range</dt><dd>none: no case has a mix</dd>")
         st.html(ph("Decision panel", "for the committee") +
-                f'<dl class="kv"><dt>Action</dt><dd>{esc(analysis.PENDING.split(":")[0])}</dd>{span}'
+                f'<dl class="kv"><dt>Action</dt><dd>{esc(analysis.COMMITTEE_ACTION_SHORT)}</dd>{span}'
                 f'<dt>Stop if</dt><dd>ERP below {analysis.pct(built["erp_floor"])}</dd>'
                 f'<dt>Stop if</dt><dd>CPI y/y above {analysis.pct(built["inflation_ceiling"])}</dd>'
                 f'<dt>Watch (suggested)</dt><dd>each CPI release; 10y yield; realized vol; BIL after rebalance</dd></dl>'

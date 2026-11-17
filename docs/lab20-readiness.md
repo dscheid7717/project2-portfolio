@@ -58,8 +58,7 @@ The block that produces my decision number is `lowest_risk_mix` in [`engine.py`]
 
 ## My decision line
 
-> **TODO (Drew):** one line: adopt, allocate to, rebalance, pilot or reject, with the condition that
-> would reverse it.
+**Pilot the constrained portfolio with 20% of the reserve for 12 months, reviewed quarterly. Stop the pilot and return the sleeve to the current policy if CPI inflation exceeds 3.82% or my equity risk premium falls below 4.85%, since either leaves no mix that can satisfy the mandate. Reconsider adopting if it holds through 4 quarterly reviews with realized volatility under 10%.**
 
 ## Reflect
 

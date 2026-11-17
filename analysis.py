@@ -28,7 +28,9 @@ BASE_INPUTS = {
     "step": 5,                       # search grid, percentage points
 }
 
-PENDING = "pending: written by Drew in docs/decision-memo.md"
+# The committee decision: Drew's, recorded 2026-11-17 (docs/decision-memo.md).
+COMMITTEE_ACTION = "Pilot the constrained portfolio with 20% of the reserve for 12 months, reviewed quarterly. Stop the pilot and return the sleeve to the current policy if CPI inflation exceeds 3.82% or my equity risk premium falls below 4.85%, since either leaves no mix that can satisfy the mandate. Reconsider adopting if it holds through 4 quarterly reviews with realized volatility under 10%."
+COMMITTEE_ACTION_SHORT = "PILOT: 20% of reserve, 12 months"
 
 
 def pct(value, decimals=2):
@@ -99,7 +101,7 @@ def report(inputs, built):
               f"  CPI inflation above {pct(built['inflation_ceiling'])} (objective above "
               f"{pct(None if built['target_ceiling'] is None else base['inflation'] + built['target_ceiling'])}): "
               f"no mix meets the mandate",
-              "", f"Committee action: {PENDING}"]
+              "", f"Committee action: {COMMITTEE_ACTION}"]
     return "\n".join(lines)
 
 
@@ -128,7 +130,7 @@ def visible_output(inputs, built):
         "allocation_range_pct": built["range"],
         "stop_conditions": {"erp_below_pct": built["erp_floor"], "inflation_above_pct":
                             None if built["inflation_ceiling"] is None else round(built["inflation_ceiling"], 4)},
-        "committee_action": PENDING,
+        "committee_action": COMMITTEE_ACTION,
         "limitations": [
             "Expected returns are yield-based estimates, not forecasts; the equity risk premium is a judgment.",
             "Volatility and correlation are 60 months of history that include the 2022 rate shock.",

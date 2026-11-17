@@ -112,6 +112,6 @@ the changed input. Choose an input that is **not** already in the stress table a
 |---|---|---|---|
 | 2026-11-10 | Claude Code (Claude Opus 5.5) | built `engine.py`, `analysis.py`, `app.py`, `refresh_data.py` and the tests from my Labs 14–17 work; froze the data | accepted after the course known answers and 23 tests passed |
 | 2026-11-10 | Claude Code (Claude Opus 5.5) | proposed yield-based expected returns instead of the 60-month history means | accepted: the history means were negative for both bond funds because of the 2022 rate shock |
-| 2026-11-10 | Claude Code (Claude Opus 5.5) | drafted the README, this record and the memo's factual sections | accepted; the recommendation, the monitors and the Locked Changed-Input prediction are mine |
+| 2026-11-10 | Claude Code (Claude Opus 5.5) | drafted the README, this record and the memo's factual sections | accepted; the recommendation (pilot, 20% of the reserve, 12 months), the monitors and the Locked Changed-Input prediction are mine |
 
 *Any remaining errors are my own.*
