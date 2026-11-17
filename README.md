@@ -41,18 +41,32 @@ premium falls below **4.85%** or CPI inflation rises above **3.82%**.
 
 ## Run it
 
-Python 3.12. **On Windows, clone to a short folder path** (for example `C:\p2`) or enable long paths:
-in a cold run from a long path, pip silently skipped part of Streamlit and the app failed with
-`No module named 'streamlit.proto'`. The tests and `analysis.py` still ran. From this folder:
+Python 3.12 and Git. **On Windows, use a short folder path** such as `C:\p2`: in a cold run from a long
+path, pip silently skipped part of Streamlit and the app failed with `No module named 'streamlit.proto'`.
+
+**Windows (PowerShell)**, no activation needed:
 
 ```
+git clone https://github.com/dscheid7717/project2-portfolio C:\p2
+cd C:\p2
 python -m venv .venv
-.venv\Scripts\activate            (macOS/Linux: source .venv/bin/activate)
-pip install -r requirements.txt
-streamlit run app.py              the app: status bar, five tabs, what-if controls in the sidebar
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python -m streamlit run app.py
 ```
 
-Other commands:
+**macOS / Linux:**
+
+```
+git clone https://github.com/dscheid7717/project2-portfolio p2 && cd p2
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m streamlit run app.py
+```
+
+The app opens in your browser at http://localhost:8501. Stop it with Ctrl+C. The install can take several
+minutes. The result is also readable without running anything, in `output/report.txt`.
+
+Other commands (on Windows, start each with `.venv\Scripts\python` instead of `python`):
 
 | Command | What it does |
 |---|---|
