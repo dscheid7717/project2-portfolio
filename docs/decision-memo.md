@@ -1,6 +1,7 @@
 # Decision Memo — Foundation Reserve Portfolio
 
-> **AI use:** built with Claude Code (Claude Opus 5.5); the analysis and the decision are mine.
+> **AI use:** built with Claude Code (Claude Opus 5.5), which wrote the code, ran the checks and drafted the
+> documentation under my direction; the analysis and the decision are mine.
 > **Education, not investment advice.**
 
 **To:** Foundation investment committee · **From:** Drew Scheiderer, portfolio analyst ·
@@ -21,6 +22,15 @@ the current policy.
 Expected return at least CPI inflation as known on the decision date plus 4%: **3.72% + 4% = 7.72%**.
 Annual volatility at most 10%; at least 3% in BIL for twelve months of payouts; no fund above 70%;
 long-only. Benchmark: 60% VT / 40% LQD.
+
+**Why these limits (my choices):**
+- **Volatility at most 10%:** the foundation wanted no calendar-year loss over 10%, which I flagged in
+  Lab 13 as a promise nobody can check; a volatility cap turns it into a limit I can measure. The reserve
+  also pays out every quarter, so it should carry less risk than the 60/40 benchmark (12.23%).
+- **At least 3% in BIL:** twelve months of payouts, 4 × $0.75M on a $100M reserve, held in T-bills.
+- **No fund above 70%:** the reserve should never depend on a single fund; at least 30% is always elsewhere.
+- **CPI + 4%:** the foundation's objective, measured with CPI as known on the decision date so the target
+  never uses data published later.
 
 ## What the process found
 
@@ -78,5 +88,8 @@ inflation is above **3.82%**. Inflation is 3.72% today.
 Expected returns are estimates built from yields known on the decision date, and the equity risk
 premium is a judgment. Risk comes from 60 months that include the 2022 rate shock. LQD's yield is not
 reduced for credit losses. Full detail: `docs/validation-and-ai-use.md`.
+
+**AI use and checks:** every material AI use, and how I checked it, is in the AI-use register of
+[`docs/validation-and-ai-use.md`](validation-and-ai-use.md#ai-use-register).
 
 *Any remaining errors are my own.*

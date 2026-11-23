@@ -29,8 +29,12 @@ STYLE = f"""
 .stApp {{ background: var(--bg); color: var(--text); font-family: var(--sans); }}
 .stApp p, .stApp li, .stApp label, .stApp span {{ font-family: var(--sans); }}
 .block-container {{ max-width: 1400px; padding: 1rem 1.25rem 3rem; }}
-#MainMenu, footer, [data-testid="stToolbar"], [data-testid="stDecoration"] {{ display: none; }}
-header[data-testid="stHeader"] {{ background: transparent; height: 0; }}
+#MainMenu, footer, [data-testid="stMainMenu"], [data-testid="stAppDeployButton"], [data-testid="stToolbarActions"],
+[data-testid="stDecoration"] {{ display: none; }}
+header[data-testid="stHeader"] {{ background: transparent; height: 0; overflow: visible; }}
+/* keep the reopen-sidebar button reachable when the sidebar is collapsed (narrow windows collapse it) */
+[data-testid="stExpandSidebarButton"] {{ position: fixed; top: .6rem; left: .6rem; z-index: 1000;
+  background: var(--panel); border: 1px solid var(--accent); color: var(--accent); }}
 section[data-testid="stSidebar"] {{ background: #0F1317; border-right: 1px solid var(--line); }}
 section[data-testid="stSidebar"] * {{ color: var(--text); }}
 

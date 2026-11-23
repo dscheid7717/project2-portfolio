@@ -1,6 +1,7 @@
 # Validation and AI Use — Project 2, Foundation Reserve Portfolio
 
-> **AI use:** built with Claude Code (Claude Opus 5.5); the analysis and the decision are mine.
+> **AI use:** built with Claude Code (Claude Opus 5.5), which wrote the code, ran the checks and drafted the
+> documentation under my direction; the analysis and the decision are mine.
 > **Education, not investment advice.**
 
 **Student:** Drew Scheiderer · **Course:** FIN 43900, AI in Finance, Purdue, Fall 2026 ·
@@ -132,11 +133,22 @@ the changed input. Choose an input that is **not** already in the stress table a
 | Changed input, old → new value, units | Volatility cap (mandate risk limit, annual volatility): **10.0% → 11.0%** |
 | My prediction (AI off): direction of the constrained mix, expected return and volatility, and why | I believe this will make the portfolio more heavily weighted toward VT, because we are OK with more volatility. Expected return will most likely increase, and so will volatility. More risk generally means more reward. |
 | Expected decision effect | My 20% pilot would not change, because I still want to test the mix in practice and review its results for the 12-month period. |
-| Prediction timestamp and commit | 2026-11-17; the commit titled "Locked prediction, AI off: vol cap 10 to 11", pushed before the run. My own words, typed to Claude Code, which recorded them unchanged except for spelling. |
+| Prediction timestamp and commit | 2026-11-17; commit `b5ead91` ("Locked prediction, AI off: vol cap 10 to 11"), pushed before the run. My own words, typed to Claude Code, which recorded them unchanged except for spelling. |
 | Command run | `python analysis.py --set vol_cap=11`, run after commit `b5ead91`; output saved to `output/changed-input-run.txt`, base case in `output/report.txt` |
 | Actual result | **The constrained mix did not change:** BIL 35 / IEF 0 / LQD 0 / VT 65, expected return 7.80%, volatility 9.69%, the same as the base. What changed is the margin of safety. Two stress cases that stopped the process now have a mix: extra 0.25% costs → BIL 30 / VT 70, and the 1-point-tighter cap (now 10%) → BIL 35 / VT 65. Stress stops fall from 4 of 8 to 2 of 8. The stop conditions loosen: equity risk premium below 4.35% (was 4.85%), CPI inflation above 4.17% (was 3.82%). The VT range widens to 55–70%. |
 | Actual decision effect | None: the 20% pilot stands, as predicted. The mandate keeps the 10% cap, so the stop triggers in my decision (3.82% CPI, 4.85% ERP) are unchanged. |
 | Reconciliation and failure diagnosis if they differ | **The decision matched; the portfolio prediction did not.** I expected more VT, higher return and higher volatility. Nothing moved, because the search does not chase return: it keeps the *lowest-volatility* mix that reaches the 7.72% objective. That mix already sat at 9.69%, under the old 10% cap, so the cap was not binding. The binding constraint is the return objective, and loosening a limit that isn't binding cannot change the answer. "More risk, more reward" describes the trade-off, but this optimizer takes only as much risk as the objective requires. The cap's real effect was on fragility: it widens the room before the process stops. *(Diagnosis drafted with Claude Code from the run; reviewed by me.)* **My realization after the run:** the mix's volatility was already 9.69%, below the 10% cap. The 11% cap could come into effect during the 12-month pilot if the mix's volatility increases. |
+
+## Limitations
+
+- Expected returns are yield-based estimates, not forecasts; the 5% equity risk premium is a judgment, and
+  below 4.85% no mix passes.
+- Volatility and correlation come from 60 months that include the 2022 rate shock; the risk regime check
+  shows the mix depends on that regime.
+- LQD's yield is not reduced for expected credit losses, which overstates its expected return.
+- Expense ratios were read on 2026-11-10, after the decision date.
+- The search uses a 5-point grid, so a finer mix could pass in cases where this one reports none.
+- Prices are Yahoo Finance adjusted closes, not an audited total-return series.
 
 ## AI-use register
 
@@ -146,5 +158,9 @@ the changed input. Choose an input that is **not** already in the stress table a
 | 2026-11-10 | Claude Code (Claude Opus 5.5) | proposed yield-based expected returns instead of the 60-month history means | accepted: the history means were negative for both bond funds because of the 2022 rate shock |
 | 2026-11-17 | Claude Code (Claude Opus 5.5) | recorded my dictated Locked Changed-Input prediction unchanged (commit `b5ead91`), ran the changed input after that commit, and drafted the result and diagnosis | accepted after checking the run output; the prediction is my own |
 | 2026-11-10 | Claude Code (Claude Opus 5.5) | drafted the README, this record and the memo's factual sections | accepted; the recommendation (pilot, 20% of the reserve, 12 months), the monitors and the Locked Changed-Input prediction are mine |
+| 2026-11-17 | Claude Code (Claude Opus 5.5) | redesigned the app as a terminal-style interface (status bar, five tabs, decision panel), at my request after the professor asked for an easier-to-use, Bloomberg-like UI | accepted after the tests passed and every number matched `output/report.txt` |
+| 2026-11-17 | Claude Code (Claude Opus 5.5) | the search kept only BIL and VT; I asked whether a two-fund portfolio was too simple, and Claude reran the search with 2011–2021 volatility and correlation (the risk regime check) | accepted: the two-fund mix is a result of the 2021–2026 correlations, not a bug; with 2011–2021 risk, Treasuries enter (BIL 5 / IEF 35 / VT 60) |
+| 2026-11-17 | Claude Code (Claude Opus 5.5) | added the equity risk premium range and the as-of check on adjusted prices, from my Project 1 feedback | accepted; the 4.85% break-even matches the stop condition |
+| 2026-11-23 | Claude Code (Claude Opus 5.5) | drafted the scripts and on-screen slides for Videos 1–3 from this record and the memo; fixed the app so the sidebar can be reopened when collapsed; worded the memo's "Why these limits" from the reasons I chose | scripts edited and recorded by me; transcripts corrected from YouTube captions; sidebar fix accepted after the tests passed |
 
 *Any remaining errors are my own.*
