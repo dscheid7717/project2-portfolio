@@ -1,0 +1,30 @@
+PROJECT: FIN 43900 Project 2 -- Foundation Reserve Portfolio (Investment Management Application)
+STUDENT: Drew Scheiderer
+VIDEO: 1 How My System and Thinking Changed (plus one AI output checked)
+STABLE VIDEO ID/URL: https://youtu.be/5Cw8Q9mSVPE (YouTube ID 5Cw8Q9mSVPE, Unlisted)
+TITLE: FIN 43900 Project 2 – Video 1: How My System and Thinking Changed – Drew Scheiderer
+DURATION: 2:51 as reported by YouTube (limit 3:00).
+REPOSITORY: https://github.com/dscheid7717/project2-portfolio (frozen commit recorded in project-submission-manifest.csv)
+
+Corrected from YouTube automatic captions: names, tickers, finance terms and numbers corrected;
+filler words and self-corrections left as spoken. Bracketed text is a clarification, not speech.
+
+[00:00] Drew Scheiderer: I'm Drew Scheiderer, and this is Project 2 for FIN 43900. Two statements first. I used Claude Code, Opus 5.5, to write the code, run the checks, and help draft my documents. The analysis and the decision are all mine. And this is education, not investment advice.
+
+[00:18] Drew Scheiderer: This video covers how my system and my thinking changed. It started in Labs 13 to 15 with the course's Meridian case: a mandate checker, two baselines, and a search on the numbers the course gave us. Labs 16 and 17 added point-in-time data, so my objective uses only CPI as it was known on October 30th: 3.72%. [Plus the 4% real target, the objective is 7.72%.]
+
+[00:41] Drew Scheiderer: On November 10th, I moved to four real funds: BIL, IEF, LQD and VT. Claude proposed yields as expected returns instead of the five-year history. I checked: the history means are negative for both bond funds because of the 2002 rate shock -- 2022 rate shock. So I accepted it. [App, DATA tab: history means IEF -1.08%, LQD -0.42%.]
+
+[00:59] Drew Scheiderer: The result is BIL 35, VT 65: 7.8% expected return against 7.72%, and 9.69% volatility under my 10% cap. Both baselines pass. [Misspoken: both baselines FAIL. Equal weight (6.05%) is below the 7.72% objective; the 60/40 benchmark breaks the 10% volatility cap (12.23%) and holds no BIL reserve. See output/report.txt and docs/decision-memo.md.]
+
+[01:15] Drew Scheiderer: Here's the AI output I checked. The search Claude built kept only two of my four funds, and I asked whether that was too simple. Since 2021, IEF and VT moved together at 0.61, and LQD and VT at 0.78. So bonds added risk without hedging.
+
+[01:34] Drew Scheiderer: I had the search rerun with risk from 2011 to 2021. There, IEF and VT are at minus 3.2 -- or at minus 0.32 -- and Treasuries come in: BIL 5, IEF 35, VT 60. My verdict: accepted. Two funds is the real answer under today's correlations, and a reason to rerun every quarter.
+
+[01:55] Drew Scheiderer: The biggest change in my thinking came from my Locked Changed-Input Record. With AI off, I committed the prediction [commit b5ead91]: raising the volatility cap from 10 to 11% would add VT and raise return and risk. I was wrong. The mix did not move.
+
+[02:13] Drew Scheiderer: The search takes the lowest-risk mix -- the search takes the lowest-risk mix that meets the objective, and it was already under 10%. So the cap wasn't binding. What changed was fragility. Stress stops fell from four of eight to two.
+
+[02:38] Drew Scheiderer: So my decision is a pilot: 20% of the reserve for 12 months, stopped if CPI tops 3.82% or my equity risk premium falls below 4.8 -- 85% [4.85%].
+
+END OF CORRECTED TRANSCRIPT

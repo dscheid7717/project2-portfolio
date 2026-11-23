@@ -1,0 +1,37 @@
+PROJECT: FIN 43900 Project 2 -- Foundation Reserve Portfolio (Investment Management Application)
+STUDENT: Drew Scheiderer
+VIDEO: 2 Code Walkthrough
+STABLE VIDEO ID/URL: https://youtu.be/zbII1uggXH0 (YouTube ID zbII1uggXH0, Unlisted)
+TITLE: FIN 43900 Project 2 – Video 2: Code Walkthrough – Drew Scheiderer
+DURATION: 4:45 as reported by YouTube (limit 5:00).
+REPOSITORY: https://github.com/dscheid7717/project2-portfolio (frozen commit recorded in project-submission-manifest.csv)
+
+Corrected from YouTube automatic captions: names, tickers, file and function names, finance terms
+and numbers corrected; filler words and self-corrections left as spoken. Bracketed text is a
+clarification, not speech.
+
+[00:00] Drew Scheiderer: I'm Drew Scheiderer, and this is Video 2 of Project 2 for FIN 43900, the code walkthrough. I used Claude Code with Opus 5.5 to write the code, run the checks, and help draft my documents and the script. The analysis and the decision are all mine. This is education, not investment advice.
+
+[00:18] Drew Scheiderer: The code is in four files, and the work flows in one direction. The data folder holds the frozen inputs as of October 30th. engine.py does the calculation. analysis.py holds the inputs and writes the frozen report. app.py displays the engine's results, so it does no math of its own. And test_project.py checks the engine with 27 tests.
+
+[00:40] Drew Scheiderer: Every material [input] lives in BASE_INPUTS, labeled as a fact, a judgment, or a mandate rule. The decision date is a fact. My 5% equity risk premium is a judgment, which is why it's stress-tested. The 10% volatility -- volatility cap, the 70% largest-fund limit, and the 3% BIL reserve are mandate rules. [analysis.py, lines 19-31]
+
+[01:03] Drew Scheiderer: My point-in-time signal is CPI. Line 95 refuses any CPI vintage published after the decision date, because that would be look-ahead. Then it takes the latest month in that vintage, September 2026, against the same month a year earlier. That's 3.72%. Plus my 4% real target, the objective is 7.72%. [engine.py, cpi_inflation_as_known, lines 89-102]
+
+[01:27] Drew Scheiderer: Expected returns come from yields known on the decision date, not from history. BIL is the three-month bill yield. IEF is the average of the seven- and 10-year Treasury yields. LQD is the investment-grade corporate yield, and VT is the 10-year yield plus my equity risk premium. Line 86 subtracts each fund's expense ratio. [engine.py, expected_returns, lines 73-86]
+
+[01:52] Drew Scheiderer: For risk, line 135 builds the covariance from each pair's correlations and volatilities, and line 145 sums every pair of weights against it. That's how correlation matters here, and it's why bonds that moved with stocks didn't make the mix. [engine.py, covariance_matrix and portfolio_volatility]
+
+[02:10] Drew Scheiderer: This is the code that produces my decision number. mandate_check, at line 166, tests one portfolio against all five rules and returns each rule's value and whether it passed. lowest_risk_mix, at line 185, goes through all 1,771 long-only mixes on a five-point grid. Line 190 skips any mix below the objective. Line 193 skips any mix that breaks a rule. And the function keeps the one with the lowest volatility. If none passes, it returns None, so the app says "no mix" instead of quietly lowering the objective. Here the answer is BIL 35 and VT 65.
+
+[02:54] Drew Scheiderer: Each stress case changes exactly one input: an estimate, the risk window, costs or a constraint. The breakeven function raises the equity premium step by step until a passing mix exists. That's where my 4.85 -- 85% stop condition comes from. [engine.py, stress_cases lines 271-282, breakeven lines 305-311]
+
+[03:10] Drew Scheiderer: Here it is live. At 4.8%, there's none. At 4.85, a mix comes back: that's BIL 30, IEF 5 and VT 65, just above the objective and just under the cap. Back at my 5% base, it's back to BIL 35, VT 65. [App sidebar, equity risk premium slider at 4.80%, 4.85% and 5.00%.]
+
+[03:37] Drew Scheiderer: The tests target the failures that would hurt the most. This one feeds the engine a CPI vintage from November 12th, after my decision date, and the engine has to refuse it. This one checks every mix again by brute force and confirms no passing mix has lower volatility than mine. The suite also reproduces the course's Lab 14 and 15 known answers. [test_project.py, lines 69-72 and 132-140]
+
+[04:08] Drew Scheiderer: Running them now: 27 tests, all OK. And analysis.py with the freeze flag rewrites the output folder only if every test passes, so the frozen report can't come from broken code. [PowerShell: python -m unittest test_project -v]
+
+[04:30] Drew Scheiderer: One limit in the code: the search uses a five-point grid, so a finer mix could pass where this reports none. During the pilot, rerunning this with each quarter's CPI and yields is how I check the stop conditions. That's the code.
+
+END OF CORRECTED TRANSCRIPT

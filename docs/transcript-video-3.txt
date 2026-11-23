@@ -1,0 +1,42 @@
+PROJECT: FIN 43900 Project 2 -- Foundation Reserve Portfolio (Investment Management Application)
+STUDENT: Drew Scheiderer
+VIDEO: 3 Investment Committee Presentation (opens with the app running live)
+STABLE VIDEO ID/URL: https://youtu.be/CaXQ4VcSMbM (YouTube ID CaXQ4VcSMbM, Unlisted)
+TITLE: FIN 43900 Project 2 – Video 3: Investment Committee Presentation – Drew Scheiderer
+DURATION: 5:01 as reported by YouTube (audio 5:00.7). The committee ask ends at 4:59; "Thank you" ends at 5:00.
+REPOSITORY: https://github.com/dscheid7717/project2-portfolio (frozen commit recorded in project-submission-manifest.csv)
+
+YouTube had not generated automatic captions for this video by 2026-11-23, so this transcript starts
+from a local speech-to-text run (faster-whisper, small.en) on the video's audio, then was corrected:
+names, tickers, finance terms and numbers corrected; filler words left as spoken. Bracketed text is a
+clarification, not speech.
+
+[00:00] Drew Scheiderer: I'm Drew Scheiderer, presenting to the foundation's investment committee for FIN 43900, Project 2. Two statements first. I used Claude Code with Claude Opus 5.5 to build the app, run the checks, and help draft my documents and this script. The analysis and the decision are all mine, and this is education, not investment advice.
+
+[00:20] Drew Scheiderer: This is my app running live. The bar across the top shows the decision date, October 30th, 2026, and the objective, the status, which is PASS, and the action that I'm recommending.
+
+[00:32] Drew Scheiderer: The question is whether to adopt, pilot, or reject a constrained portfolio process for the reserve, using four funds: BIL for T-bills, IEF for Treasuries, LQD for corporate bonds, and VT for global stocks.
+
+[00:47] Drew Scheiderer: Here's the mandate: expected return at least CPI plus 4%, which is 7.72%, with CPI as known on the decision date. Volatility at most 10%, at least 3% in BIL, which covers 12 months of payouts, no fund above 70%, and long-only. I set the 10% cap because the reserve can't afford a large calendar-year loss, and volatility is a limit I can actually measure. The 70% limit keeps one fund from carrying the whole reserve.
+
+[01:24] Drew Scheiderer: Both baselines fail. Equal weight expects 6.05%, below the objective. The 60/40 benchmark expects more, 8.21%, but its volatility is 12.23%, which is over the cap, and it holds no BIL reserve.
+
+[01:43] Drew Scheiderer: The constrained portfolio is BIL 35, VT 65: 7.8% expected return and 9.69% volatility. It passes every rule, but only by 0.08% of returns and 0.31 points of volatility. Over the last 60 months, it returns 7.95% a year with a 16.9% max drawdown, against 23.8% for the benchmark. That's history, not a forecast.
+
+[02:15] Drew Scheiderer: That thin margin is why the stress run matters. I change one input at a time, and 4 of 8 cases leave no mix at all: an equity premium 1 point lower, inflation 1 point higher, a quarter point more in costs, or a cap 1 point tighter. Across the cases that still work, the range is BIL 25 to 45%, IEF 0 to 5%, LQD 0 to 10%, and VT 55 to 65.
+
+[02:46] Drew Scheiderer: My equity risk premium is the judgment that carries this result, so it gets its own range. Below 4.85%, no mix passes.
+
+[02:59] Drew Scheiderer: Inflation is my point-in-time signal. It is 3.72%, using only the CPI release known on October 30th. The red line is the stop, at 3.82%, a tenth of a point away.
+
+[03:18] Drew Scheiderer: One more check. The mix holds only two funds because bonds have moved with stocks since 2021. With 2011 to 2021 correlations, Treasuries come in: BIL 5, IEF 35, VT 60. So the process should be run every quarter, not locked in.
+
+[03:37] Drew Scheiderer: So why not adopt? It passes by less than a tenth of a point, and half the stress cases break it. Why not reject? It's the only mix that passes every rule today, and both baselines pass. [Misspoken: both baselines FAIL, as stated at 01:24.] A pilot tests it with real money at unlimited risks. [Intended: limited risk. The pilot is capped at 20% of the reserve.]
+
+[03:56] Drew Scheiderer: My recommendation is a pilot: 20% of the reserve in the constrained portfolio for 12 months, reviewed quarterly, with the other 80% under the current policy. Stop the pilot and return the sleeve to current policy if CPI inflation goes above 3.82%, or my equity risk premium falls below 4.85%, since either leaves no mix that meets the mandate. I'll watch every CPI release, and realized volatility each quarter. If it holds through four reviews with realized volatility under 10%, I bring it back for adoption.
+
+[04:33] Drew Scheiderer: The limits: expected returns are estimates. The equity premium is my judgment. Risk comes from 60 months that include the 2022 rate shock, and LQD's yield isn't reduced for credit losses.
+
+[04:50] Drew Scheiderer: So my ask to the committee: approve a 12-month pilot on 20% of the reserve, with these stop conditions. Thank you.
+
+END OF CORRECTED TRANSCRIPT
