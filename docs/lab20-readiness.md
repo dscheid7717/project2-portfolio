@@ -27,12 +27,16 @@ and every number are unchanged, so my partner's cold run uses the same steps.
 
 ## I — the cold run, by my partner
 
+*Note: the partner's cold-run fields and the two Reflect answers below were filled in on 2026-11-23,
+after the Lab 20 due date, only because the answers could not be saved on the day. They are the same as
+what was observed in Lab 20 on 2026-11-17.*
+
 | Field | Partner's note |
 |---|---|
-| Command | **TODO (partner):** the commands they ran from the README |
+| Command | read the README and followed its steps to download and start the app |
 | First failure | none: clean run |
-| Elapsed time | **TODO (partner)** |
-| Where the result is | **TODO (partner)**: e.g. the app's status bar and Overview tab, or `output/report.txt` |
+| Elapsed time | not recorded |
+| Where the result is | the app's Overview tab, found immediately because it is the first screen |
 
 ## V — one changed input, predicted first
 
@@ -80,6 +84,13 @@ Clean cold run; no fix needed.
 
 I'd like to add some kind of AI assistant in the app that can be chatted with. Otherwise, the project
 looks good, and the professor confirmed that in class.
+
+1. **What the cold run found that I could not see:** nothing new. My partner had no issues: he read the
+   README, downloaded the app, and found the Overview immediately, as it is the first screen.
+2. **What I will not touch before the deadline:** the download path. The cold run reaffirmed that the
+   README's install steps work as written, so I will leave them alone before submission.
+
+*(Answers 1 and 2 filled in on 2026-11-23; see the note under "I — the cold run".)*
 
 ---
 
