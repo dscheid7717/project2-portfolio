@@ -35,7 +35,7 @@ what was observed in Lab 20 on 2026-11-17.*
 |---|---|
 | Command | read the README and followed its steps to download and start the app |
 | First failure | none: clean run |
-| Elapsed time | not recorded |
+| Elapsed time | about 5 minutes in total |
 | Where the result is | the app's Overview tab, found immediately because it is the first screen |
 
 ## V — one changed input, predicted first
